@@ -18,17 +18,16 @@ email: ringer.sam93@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
   line in _config.yml. It will appear in your document head meta (for
-  Google search results) and in your feed.xml site description.
+Google search results) and in your feed.xml site description.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "" # the base hostname & protocol for your site, e.g. http://example.com
+url: "http://samringer.co.ul" # the base hostname & protocol for your site, e.g. http://example.com
 github_username:  samringer
 
 # Build settings
 markdown: kramdown
 theme: minima
 plugins:
-  - jekyll-feed
-
+- jekyll-feed
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

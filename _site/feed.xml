@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-09-24T08:55:48+01:00</updated><id>http://localhost:4000/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Deep Dive: Loss Functions</title><link href="http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions.html" rel="alternate" type="text/html" title="Deep Dive: Loss Functions" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions</id><content type="html" xml:base="http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions.html">&lt;style&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-10-04T08:30:23+01:00</updated><id>http://localhost:4000/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Deep Dive: Loss Functions</title><link href="http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions.html" rel="alternate" type="text/html" title="Deep Dive: Loss Functions" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions</id><content type="html" xml:base="http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions.html">&lt;style&gt;
 .center_1 {
     display: block;
     margin-left: auto;
@@ -36,8 +36,8 @@
 &lt;ol&gt;
   &lt;li&gt;&lt;strong&gt;Data&lt;/strong&gt;: What will the model be trained on?&lt;/li&gt;
   &lt;li&gt;&lt;strong&gt;Architecture&lt;/strong&gt;: What is the underlying structure of the model?&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Loss Function&lt;/strong&gt;: How well is the model doing?&lt;/li&gt;
-  &lt;li&gt;&lt;strong&gt;Optimizer&lt;/strong&gt;: What changes should we make to the model to make it better?&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Loss Function&lt;/strong&gt;: How can we evaluate how well the model is doing?&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Optimizer&lt;/strong&gt;: How should we make changes to the model to make it better?&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;h2 id=&quot;what-is-a-loss-function&quot;&gt;What is a loss function?&lt;/h2&gt;
@@ -54,11 +54,22 @@
 
 &lt;p&gt;&lt;strong&gt;Idea 1: Counting&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;The easiest way of assesing performance it to simple count how many correct predictions the network made. For example “Of the 100 pictures, our network correctly classified 62 of them.” This way of scoring is called &lt;a href=&quot;https://en.wikipedia.org/wiki/Precision_and_recall&quot;&gt;precision &amp;amp; recall&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;The easiest way of assesing performance it to simple count how many correct predictions the network made. For example: “Of the 100 pictures, our network correctly classified 62 of them.”&lt;/p&gt;
 
-&lt;p&gt;Precision and recall has one big problem in the context of deep learning. It is &lt;em&gt;non-differntiable&lt;/em&gt;. This means that, although precision and recall can tell us how good the predictions are at the moment, they can’t be used to train the network to produce better predictions in the future.&lt;/p&gt;
+&lt;p&gt;We add a bit of detail by also counting the following:&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Idea 2: Change To Probability&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;em&gt;What percentage of pictures classified as pandas were actually pandas?&lt;/em&gt; (True positives)&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;What percentage of pictures classified as pandas were actually armadillos?&lt;/em&gt; (False positives)&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;What percentage of pictures classified as armadillos were actually armadillos?&lt;/em&gt; (True negatives)&lt;/li&gt;
+  &lt;li&gt;&lt;em&gt;What percentage of pictures classified as armadillos were actually pandas?&lt;/em&gt; (False negatives)&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;This allows us to use a method of scoring called &lt;a href=&quot;https://en.wikipedia.org/wiki/Precision_and_recall&quot;&gt;precision &amp;amp; recall&lt;/a&gt;. The precision is the ratio of &lt;em&gt;true positives&lt;/em&gt; to &lt;em&gt;total predictions&lt;/em&gt; and the recall is the ratio of &lt;em&gt;true positives&lt;/em&gt; to &lt;em&gt;total positives&lt;/em&gt;. The harmonic mean of the precision and recall is called the &lt;a href=&quot;https://en.wikipedia.org/wiki/F1_score&quot;&gt;F score&lt;/a&gt;. A higher F score means a more accurate model.&lt;/p&gt;
+
+&lt;p&gt;The precision and recall technique has one big problem in the context of deep learning. It is &lt;em&gt;non-differntiable&lt;/em&gt;. This means that, although precision and recall can tell us how good the predictions are at the moment, they can’t be used to train the network to produce better predictions in the future.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Idea 2: Change To Classifier Confidence&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;We can do slightly better by having the network output how confident it is for its predictions for each individual image. For example, the network might say the following:&lt;/p&gt;
 
@@ -66,7 +77,7 @@
 
 &lt;p&gt;or&lt;/p&gt;
 
-&lt;p&gt;“&lt;em&gt;I am 3% sure Image 2 is a panda&lt;/em&gt;”&lt;/p&gt;
+&lt;p&gt;“&lt;em&gt;I am 3% sure that image 2 is a panda&lt;/em&gt;”&lt;/p&gt;
 
 &lt;p&gt;and in terms of training, we may respond:&lt;/p&gt;
 
@@ -78,11 +89,11 @@
 
 &lt;p&gt;(If the second example doesn’t make sense remember that an output of “&lt;em&gt;0% panda&lt;/em&gt;” is equivalent to “&lt;em&gt;100% armadillo&lt;/em&gt;”.)&lt;/p&gt;
 
-&lt;p&gt;This is the first example we have come across of a &lt;strong&gt;loss function&lt;/strong&gt;. A loss function lets us combine two numbers (the models prediction and the actual label) into &lt;strong&gt;one number.&lt;/strong&gt; The simple loss function above finds the difference between the prediction and the label (&lt;em&gt;100% - 88% = 12%&lt;/em&gt; for example 1 and &lt;em&gt;3% - 0% = 3%&lt;/em&gt; for example 2. In reality these are outputted as decimals &lt;em&gt;0.12&lt;/em&gt; and &lt;em&gt;0.03&lt;/em&gt;.)&lt;/p&gt;
+&lt;p&gt;This is the first example we have come across of a &lt;strong&gt;loss function&lt;/strong&gt;. A loss function lets us combine two numbers (the models prediction and the actual label) into &lt;strong&gt;one number.&lt;/strong&gt; The simple loss function above finds the difference between the prediction and the label (&lt;em&gt;100% - 88% = 12%&lt;/em&gt; for example 1 and &lt;em&gt;3% - 0% = 3%&lt;/em&gt; for example 2. In practice these are outputted as decimals &lt;em&gt;0.12&lt;/em&gt; and &lt;em&gt;0.03&lt;/em&gt;.)&lt;/p&gt;
 
 &lt;p&gt;The errors calculated by the loss function are known as the &lt;strong&gt;loss&lt;/strong&gt;. We want to minimise the error and so a loss closer to 0 is better.&lt;/p&gt;
 
-&lt;p&gt;Unlike precision &amp;amp; recall, loss functions are &lt;em&gt;differentiable&lt;/em&gt; and so our model can be trained!&lt;/p&gt;
+&lt;p&gt;Unlike precision &amp;amp; recall, loss functions are &lt;em&gt;differentiable&lt;/em&gt; and so our model can be trained! (As precision &amp;amp; recall is non-differentiable, it is called a &lt;em&gt;metric&lt;/em&gt; and not a loss function).&lt;/p&gt;
 
 &lt;p&gt;By combining all of this, we can now understand why loss functions are so useful. They are &lt;strong&gt;differentiable&lt;/strong&gt; functions that produce &lt;strong&gt;one&lt;/strong&gt; number describing how accurate our current model is.&lt;/p&gt;
 
@@ -90,7 +101,7 @@
 
 &lt;h3 id=&quot;mean-absolute-error&quot;&gt;Mean Absolute Error&lt;/h3&gt;
 
-&lt;p&gt;The loss function considers the raw difference between the model prediction and true label (&lt;em&gt;100% - 88% = 12%&lt;/em&gt; for example 1 and &lt;em&gt;3% - 0% = 3%&lt;/em&gt; for example 2.) This is called &lt;em&gt;absolute error&lt;/em&gt;. It is often the case that we want to combine the accuracies of many of our model’s predictions at once. One way of doing so is taking the mean. For our example, this would be $ (12\% + 3\%) \div 2 = 7.5\%$.&lt;/p&gt;
+&lt;p&gt;The loss function in the example above considers the raw difference between the model prediction and true label (&lt;em&gt;100% - 88% = 12%&lt;/em&gt; for example 1 and &lt;em&gt;3% - 0% = 3%&lt;/em&gt; for example 2.) This is called &lt;em&gt;absolute error&lt;/em&gt;. We  often want to combine the accuracies of many of our model’s predictions at once. One way of doing so is taking the mean. For our example, this would be $ (12\% + 3\%) \div 2 = 7.5\%$.&lt;/p&gt;
 
 &lt;p&gt;Unsuprisingly, taking the mean of a series of absolute errors is known as &lt;strong&gt;mean absolute error&lt;/strong&gt; and is written mathematically like this:&lt;/p&gt;
 
@@ -100,7 +111,7 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/Mean_Absolute_Error_Actual.png&quot; alt=&quot;Mean_Absolute_Error_Annotated&quot; width=&quot;510&quot; height=&quot;240&quot; class=&quot;center_2&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;(The eagle-eyed with some calculus understanding may spot that mean absolute error is not differentiable when the error is 0. Fear not as this can be side-stepped by reparameterization.)&lt;/p&gt;
+&lt;p&gt;(The eagle-eyed with some calculus understanding may spot that mean absolute error is not differentiable when the error is 0. Fear not as this can be side-stepped through reparameterization.)&lt;/p&gt;
 
 &lt;p&gt;One issue with mean absolute error is that all errors are treated ‘equally’. Often we will want to penalise larger errors significantly more than small ones. The &lt;strong&gt;mean squared error&lt;/strong&gt; loss function lets us do so.&lt;/p&gt;
 
@@ -120,11 +131,9 @@
 
 &lt;p&gt;The mean squared and mean absolute error loss function are most suited to a type of prediction known as &lt;em&gt;regression&lt;/em&gt;.&lt;/p&gt;
 
-&lt;p&gt;Our network can be trained to output&lt;/p&gt;
+&lt;p&gt;When ever we are using our network to predict a continous value (&lt;em&gt;like the price of a house&lt;/em&gt; or &lt;em&gt;a person’s height&lt;/em&gt;) we are performing regression. This is opposed to &lt;em&gt;classification&lt;/em&gt; where we try to predict the &lt;em&gt;class&lt;/em&gt; of something (&lt;em&gt;e.g. What breed of dog is in this picture? Is this picture a panda or an armadillo?&lt;/em&gt;).&lt;/p&gt;
 
-&lt;p&gt;When ever we are using our network to predict a continous value (&lt;em&gt;like the price of a house or a person’s height&lt;/em&gt;) we are performing regression. This is opposed to &lt;em&gt;classification&lt;/em&gt; where we try to predict the &lt;em&gt;class&lt;/em&gt; of something (&lt;em&gt;e.g. What breed of dog is in this picture? Is this picture a panda or an armadillo?&lt;/em&gt;).&lt;/p&gt;
-
-&lt;p&gt;As discussed in the above section about probabilities, the output of a classfier will be a number between 0 and 1. In this situation, we can speed up the training of the network using a loss function called &lt;strong&gt;cross-entropy&lt;/strong&gt;. For the &lt;em&gt;binary classification&lt;/em&gt; panda-armadillo problem, it looks like this:&lt;/p&gt;
+&lt;p&gt;As discussed in the above section about probabilities, the output of a classfier will be a number between 0 and 1. When performing classification, the most common loss function used is &lt;strong&gt;cross-entropy&lt;/strong&gt;. For the &lt;em&gt;binary classification&lt;/em&gt; panda-armadillo problem, it looks like this:&lt;/p&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;575&quot; height=&quot;75&quot; class=&quot;center_4&quot; /&gt;&lt;/p&gt;
 
@@ -132,26 +141,14 @@
 
 &lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy_Larger.png&quot; alt=&quot;Cross_Entropy_Annotated&quot; width=&quot;580&quot; height=&quot;290&quot; class=&quot;center_5&quot; /&gt;&lt;/p&gt;
 
+&lt;p&gt;Cross-entropy is used over the other loss functions mentioned above to improve training speed. If a classifier is correctly classifying images it will output extreme class probabilities, like &lt;em&gt;0.95&lt;/em&gt; or &lt;em&gt;0.03&lt;/em&gt;. When these extreme probabilities appear the training of your network will grind to a halt if you are using a loss function like mean squared error. The benefit of cross-entropy in classification is that it allows the model to keep learning at a decent rate, even when it is outputing extreme probabilities. (The deeper reason for this involves the magnitudes of gradients produced at extreme probabilities as a result of using a &lt;a href=&quot;https://en.wikipedia.org/wiki/Sigmoid_function&quot;&gt;sigmoid function&lt;/a&gt;.)&lt;/p&gt;
+
 &lt;p&gt;Again, the loss functions gives us &lt;strong&gt;one&lt;/strong&gt; number that represents how accurate our network is.&lt;/p&gt;
 
 &lt;h2 id=&quot;further-extenstions&quot;&gt;Further Extenstions&lt;/h2&gt;
 
-&lt;p&gt;The above is very small peak into the loss function zoo. There are many simple extensions of the loss functions presented above, such as &lt;em&gt;mean absolute percentage error, hinge loss&lt;/em&gt; and &lt;em&gt;logistic loss&lt;/em&gt;  Things can also get far more complex. For example, there are&lt;/p&gt;
+&lt;p&gt;The above is very small peak into the loss function zoo. There are many simple extensions of the loss functions presented above, such as &lt;em&gt;mean absolute percentage error, hinge loss&lt;/em&gt; and &lt;em&gt;logistic loss&lt;/em&gt;.  Things can also get far more complex.&lt;/p&gt;
 
-&lt;p&gt;Loss function is only a function of model weights and biases.&lt;/p&gt;
+&lt;p&gt;For example, in a &lt;em&gt;Generative Adversarial Network (GAN)&lt;/em&gt; two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also &lt;em&gt;when the second network performs worse&lt;/em&gt; (and &lt;em&gt;vice versa&lt;/em&gt;). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.&lt;/p&gt;
 
-&lt;p&gt;Talk about the mountain scape. Changing model parameters is like walking. Optimizers are which direction and how far. Different points on landscape are different parameters.&lt;/p&gt;
-
-&lt;p&gt;Different loss functions define different landscapes.&lt;/p&gt;
-
-&lt;p&gt;Quantify how well the prediction made by the network agree with the actual labels.&lt;/p&gt;
-
-&lt;h3 id=&quot;regression&quot;&gt;Regression&lt;/h3&gt;
-
-&lt;p&gt;MSE (quite sensitive to outliers.) (When might this sensitivty to outliers be useful.)&lt;/p&gt;
-
-&lt;p&gt;Mean absolute percentage error loss (Maybe don’t include this and others that ern’t as useful) “So is the MAE. The MSLE and the MAPE are worth taking into consideration if our network is predicting outputs that vary largely in range. Suppose that a network is to predict two output variables: one in the range of [0, 10] and the other in the range of [0, 100]. In this case, the MAE and the MSE will penal‐ ize the error in the second output more significantly than the first. The MAPE makes it a relative error and therefore doesn’t discriminate based on the range. The MSLE squishes the range of all the outputs down, simply how 10 and 100 translate to 1 and 2 (in log base 10). “ This is normally dealt with with standard normalisation.&lt;/p&gt;
-
-&lt;h3 id=&quot;reconstruction&quot;&gt;Reconstruction&lt;/h3&gt;
-
-&lt;p&gt;Used for autoencoders (Maybe skim over this and go over in more depth another time.)&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>
+&lt;p&gt;It is likely that as machine learning architectures become more complex, the loss functions used will do the same. However, as the above has shown, the core question that all current loss functions address is the same: &lt;strong&gt;what function can we use to obtain one number that represents how accurate our network is?&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

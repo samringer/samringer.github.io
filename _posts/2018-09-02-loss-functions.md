@@ -144,7 +144,7 @@ As discussed in the above section about probabilities, the output of a classfier
 
 In the context of our example where $y_i=1$ is a picture of a panda and $y_i =0$ is a picture of an armadillo, we can add the following annotations:
 
-<img src="/images/Cross_Entropy_Larger.png" alt="Cross_Entropy_Annotated" width="580" height="290" class="center_5">
+<img src="/images/Cross_Entropy_Larger.png" alt="Cross_Entropy" width="575" height="75" class="center_5">
 
 Cross-entropy is used over the other loss functions mentioned above to improve training speed. If a classifier is correctly classifying images it will output extreme class probabilities, like *0.95* or *0.03*. When these extreme probabilities appear the training of your network will grind to a halt if you are using a loss function like mean squared error. The benefit of cross-entropy in classification is that it allows the model to keep learning at a decent rate, even when it is outputing extreme probabilities. (The deeper reason for this involves the magnitudes of gradients produced at extreme probabilities as a result of using a [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function).)
 

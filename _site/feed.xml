@@ -1,17 +1,157 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-08-03T15:17:05+02:00</updated><id>http://localhost:4000/</id><title type="html">Sam Ringer</title><subtitle>Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description.</subtitle><entry><title type="html">Test</title><link href="http://localhost:4000/2018/08/02/test.html" rel="alternate" type="text/html" title="Test" /><published>2018-08-02T00:00:00+02:00</published><updated>2018-08-02T00:00:00+02:00</updated><id>http://localhost:4000/2018/08/02/test</id><content type="html" xml:base="http://localhost:4000/2018/08/02/test.html">&lt;p&gt;This is a test post&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-09-24T08:55:48+01:00</updated><id>http://localhost:4000/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Deep Dive: Loss Functions</title><link href="http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions.html" rel="alternate" type="text/html" title="Deep Dive: Loss Functions" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions</id><content type="html" xml:base="http://localhost:4000/loss/functions/machine/learning/2018/08/03/loss-functions.html">&lt;style&gt;
+.center_1 {
+    display: block;
+    margin-left: auto;
+    margin-right: 145px;
+}
+.center_2 {
+    display: block;
+    margin-left: auto;
+    margin-right: 91px;
+}
+.center_3 {
+    display: block;
+    margin-left: auto;
+    margin-right: 177px;
+}
+.center_4 {
+    display: block;
+    margin-left: auto;
+    margin-right: 90px;
+}
+.center_5 {
+    display: block;
+    margin-left: auto;
+    margin-right: 90px;
+}
+.center_6 {
+    display: block;
+    margin-left: auto;
+    margin-right: 89px;
+}
+&lt;/style&gt;
 
-&lt;p&gt;BLAH BLAH BLAH&lt;/p&gt;</content><author><name></name></author><summary type="html">This is a test post</summary></entry><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2018/08/01/welcome-to-jekyll.html" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2018-08-01T20:00:00+02:00</published><updated>2018-08-01T20:00:00+02:00</updated><id>http://localhost:4000/jekyll/update/2018/08/01/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2018/08/01/welcome-to-jekyll.html">&lt;p&gt;TESTER!!&lt;/p&gt;
+&lt;p&gt;When building a new deep learning model, there are four fundamental things that must be chosen:&lt;/p&gt;
 
-&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;strong&gt;Data&lt;/strong&gt;: What will the model be trained on?&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Architecture&lt;/strong&gt;: What is the underlying structure of the model?&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Loss Function&lt;/strong&gt;: How well is the model doing?&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Optimizer&lt;/strong&gt;: What changes should we make to the model to make it better?&lt;/li&gt;
+&lt;/ol&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;h2 id=&quot;what-is-a-loss-function&quot;&gt;What is a loss function?&lt;/h2&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;Let’s think about a simple classifier. We have a big pile of pictures that are either a picture of a panda or an armadillo and we want our network to be able to sort them into two piles:&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;p&gt;&lt;img src=&quot;/images/Pandas_Armadillos.png&quot; alt=&quot;Pandas_Armadillos&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name></name></author><summary type="html">TESTER!!</summary></entry></feed>
+&lt;html&gt;&lt;center&gt;&lt;i&gt;Pandas &amp;amp; Armadillos&lt;/i&gt;&lt;/center&gt;&lt;/html&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;Let’s say we show the neural network 100 of these pictures and it makes predictions about the content of each one. We want a way of knowing how good these predictions are.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Idea 1: Counting&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;The easiest way of assesing performance it to simple count how many correct predictions the network made. For example “Of the 100 pictures, our network correctly classified 62 of them.” This way of scoring is called &lt;a href=&quot;https://en.wikipedia.org/wiki/Precision_and_recall&quot;&gt;precision &amp;amp; recall&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Precision and recall has one big problem in the context of deep learning. It is &lt;em&gt;non-differntiable&lt;/em&gt;. This means that, although precision and recall can tell us how good the predictions are at the moment, they can’t be used to train the network to produce better predictions in the future.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Idea 2: Change To Probability&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;We can do slightly better by having the network output how confident it is for its predictions for each individual image. For example, the network might say the following:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“I am 88% sure that image 6 is a panda”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;or&lt;/p&gt;
+
+&lt;p&gt;“&lt;em&gt;I am 3% sure Image 2 is a panda&lt;/em&gt;”&lt;/p&gt;
+
+&lt;p&gt;and in terms of training, we may respond:&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;“Well done! Image 6 was a panda, but update your parameters so next time you are closer to 100% sure, rather than 88%.”&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;or in the case of the second example:&lt;/p&gt;
+
+&lt;p&gt;“&lt;em&gt;Well done! Image 2 was an armadillo. Next time try and aim for a 0% confidence instead of 3%&lt;/em&gt;”&lt;/p&gt;
+
+&lt;p&gt;(If the second example doesn’t make sense remember that an output of “&lt;em&gt;0% panda&lt;/em&gt;” is equivalent to “&lt;em&gt;100% armadillo&lt;/em&gt;”.)&lt;/p&gt;
+
+&lt;p&gt;This is the first example we have come across of a &lt;strong&gt;loss function&lt;/strong&gt;. A loss function lets us combine two numbers (the models prediction and the actual label) into &lt;strong&gt;one number.&lt;/strong&gt; The simple loss function above finds the difference between the prediction and the label (&lt;em&gt;100% - 88% = 12%&lt;/em&gt; for example 1 and &lt;em&gt;3% - 0% = 3%&lt;/em&gt; for example 2. In reality these are outputted as decimals &lt;em&gt;0.12&lt;/em&gt; and &lt;em&gt;0.03&lt;/em&gt;.)&lt;/p&gt;
+
+&lt;p&gt;The errors calculated by the loss function are known as the &lt;strong&gt;loss&lt;/strong&gt;. We want to minimise the error and so a loss closer to 0 is better.&lt;/p&gt;
+
+&lt;p&gt;Unlike precision &amp;amp; recall, loss functions are &lt;em&gt;differentiable&lt;/em&gt; and so our model can be trained!&lt;/p&gt;
+
+&lt;p&gt;By combining all of this, we can now understand why loss functions are so useful. They are &lt;strong&gt;differentiable&lt;/strong&gt; functions that produce &lt;strong&gt;one&lt;/strong&gt; number describing how accurate our current model is.&lt;/p&gt;
+
+&lt;h2 id=&quot;loss-functions-in-action&quot;&gt;Loss functions in action&lt;/h2&gt;
+
+&lt;h3 id=&quot;mean-absolute-error&quot;&gt;Mean Absolute Error&lt;/h3&gt;
+
+&lt;p&gt;The loss function considers the raw difference between the model prediction and true label (&lt;em&gt;100% - 88% = 12%&lt;/em&gt; for example 1 and &lt;em&gt;3% - 0% = 3%&lt;/em&gt; for example 2.) This is called &lt;em&gt;absolute error&lt;/em&gt;. It is often the case that we want to combine the accuracies of many of our model’s predictions at once. One way of doing so is taking the mean. For our example, this would be $ (12\% + 3\%) \div 2 = 7.5\%$.&lt;/p&gt;
+
+&lt;p&gt;Unsuprisingly, taking the mean of a series of absolute errors is known as &lt;strong&gt;mean absolute error&lt;/strong&gt; and is written mathematically like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/Mean_Absolute_Error.png&quot; alt=&quot;Mean_Absolute_Error&quot; width=&quot;455&quot; height=&quot;75&quot; class=&quot;center_1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Clearing this up with some annotation:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/Mean_Absolute_Error_Actual.png&quot; alt=&quot;Mean_Absolute_Error_Annotated&quot; width=&quot;510&quot; height=&quot;240&quot; class=&quot;center_2&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;(The eagle-eyed with some calculus understanding may spot that mean absolute error is not differentiable when the error is 0. Fear not as this can be side-stepped by reparameterization.)&lt;/p&gt;
+
+&lt;p&gt;One issue with mean absolute error is that all errors are treated ‘equally’. Often we will want to penalise larger errors significantly more than small ones. The &lt;strong&gt;mean squared error&lt;/strong&gt; loss function lets us do so.&lt;/p&gt;
+
+&lt;h3 id=&quot;mean-squared-error&quot;&gt;Mean Squared Error&lt;/h3&gt;
+
+&lt;p&gt;By changing the absolute difference in mean absolute error to a squared difference, we can easily write down the loss function for mean squared error.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/Mean_Squared_Error.png&quot; alt=&quot;Mean_Squared_Error&quot; width=&quot;465&quot; height=&quot;75&quot; class=&quot;center_3&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, adding in some annotation:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/Mean_Squared_Error_Larger.png&quot; alt=&quot;Mean_Squared_Error_Annotated&quot; width=&quot;560&quot; height=&quot;215&quot; class=&quot;center_6&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;The squared term means that larger differences between $\hat{y}_i$ and $y_i$ will contribute far more to the final value of the loss function than smaller differences. Mean squared error is also directly differentiable so we don’t have to perform any reparameterization.&lt;/p&gt;
+
+&lt;h3 id=&quot;classification--cross-entropy&quot;&gt;Classification &amp;amp; Cross-Entropy&lt;/h3&gt;
+
+&lt;p&gt;The mean squared and mean absolute error loss function are most suited to a type of prediction known as &lt;em&gt;regression&lt;/em&gt;.&lt;/p&gt;
+
+&lt;p&gt;Our network can be trained to output&lt;/p&gt;
+
+&lt;p&gt;When ever we are using our network to predict a continous value (&lt;em&gt;like the price of a house or a person’s height&lt;/em&gt;) we are performing regression. This is opposed to &lt;em&gt;classification&lt;/em&gt; where we try to predict the &lt;em&gt;class&lt;/em&gt; of something (&lt;em&gt;e.g. What breed of dog is in this picture? Is this picture a panda or an armadillo?&lt;/em&gt;).&lt;/p&gt;
+
+&lt;p&gt;As discussed in the above section about probabilities, the output of a classfier will be a number between 0 and 1. In this situation, we can speed up the training of the network using a loss function called &lt;strong&gt;cross-entropy&lt;/strong&gt;. For the &lt;em&gt;binary classification&lt;/em&gt; panda-armadillo problem, it looks like this:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;575&quot; height=&quot;75&quot; class=&quot;center_4&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;In the context of our example where $y_i=1$ is a picture of a panda and $y_i =0$ is a picture of an armadillo, we can add the following annotations:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy_Larger.png&quot; alt=&quot;Cross_Entropy_Annotated&quot; width=&quot;580&quot; height=&quot;290&quot; class=&quot;center_5&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, the loss functions gives us &lt;strong&gt;one&lt;/strong&gt; number that represents how accurate our network is.&lt;/p&gt;
+
+&lt;h2 id=&quot;further-extenstions&quot;&gt;Further Extenstions&lt;/h2&gt;
+
+&lt;p&gt;The above is very small peak into the loss function zoo. There are many simple extensions of the loss functions presented above, such as &lt;em&gt;mean absolute percentage error, hinge loss&lt;/em&gt; and &lt;em&gt;logistic loss&lt;/em&gt;  Things can also get far more complex. For example, there are&lt;/p&gt;
+
+&lt;p&gt;Loss function is only a function of model weights and biases.&lt;/p&gt;
+
+&lt;p&gt;Talk about the mountain scape. Changing model parameters is like walking. Optimizers are which direction and how far. Different points on landscape are different parameters.&lt;/p&gt;
+
+&lt;p&gt;Different loss functions define different landscapes.&lt;/p&gt;
+
+&lt;p&gt;Quantify how well the prediction made by the network agree with the actual labels.&lt;/p&gt;
+
+&lt;h3 id=&quot;regression&quot;&gt;Regression&lt;/h3&gt;
+
+&lt;p&gt;MSE (quite sensitive to outliers.) (When might this sensitivty to outliers be useful.)&lt;/p&gt;
+
+&lt;p&gt;Mean absolute percentage error loss (Maybe don’t include this and others that ern’t as useful) “So is the MAE. The MSLE and the MAPE are worth taking into consideration if our network is predicting outputs that vary largely in range. Suppose that a network is to predict two output variables: one in the range of [0, 10] and the other in the range of [0, 100]. In this case, the MAE and the MSE will penal‐ ize the error in the second output more significantly than the first. The MAPE makes it a relative error and therefore doesn’t discriminate based on the range. The MSLE squishes the range of all the outputs down, simply how 10 and 100 translate to 1 and 2 (in log base 10). “ This is normally dealt with with standard normalisation.&lt;/p&gt;
+
+&lt;h3 id=&quot;reconstruction&quot;&gt;Reconstruction&lt;/h3&gt;
+
+&lt;p&gt;Used for autoencoders (Maybe skim over this and go over in more depth another time.)&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

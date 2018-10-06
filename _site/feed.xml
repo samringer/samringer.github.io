@@ -1,18 +1,18 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-10-06T19:22:12+01:00</updated><id>/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Deep Dive: Loss Functions</title><link href="/loss/functions/machine/learning/2018/08/03/loss-functions.html" rel="alternate" type="text/html" title="Deep Dive: Loss Functions" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>/loss/functions/machine/learning/2018/08/03/loss-functions</id><content type="html" xml:base="/loss/functions/machine/learning/2018/08/03/loss-functions.html">&lt;style&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-10-06T19:32:04+01:00</updated><id>/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Deep Dive: Loss Functions</title><link href="/loss/functions/machine/learning/2018/08/03/loss-functions.html" rel="alternate" type="text/html" title="Deep Dive: Loss Functions" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>/loss/functions/machine/learning/2018/08/03/loss-functions</id><content type="html" xml:base="/loss/functions/machine/learning/2018/08/03/loss-functions.html">&lt;style&gt;
 .center_1 {
     display: block;
     margin-left: auto;
-    margin-right: 145px;
+    margin-right: 165px;
 }
 .center_2 {
     display: block;
     margin-left: auto;
-    margin-right: 91px;
+    margin-right: 111px;
 }
 .center_3 {
     display: block;
     margin-left: auto;
-    margin-right: 177px;
+    margin-right: 142px;
 }
 .center_4 {
     display: block;
@@ -22,12 +22,12 @@
 .center_5 {
     display: block;
     margin-left: auto;
-    margin-right: 90px;
+    margin-right: 70px;
 }
 .center_6 {
     display: block;
     margin-left: auto;
-    margin-right: 89px;
+    margin-right: 54px;
 }
 &lt;/style&gt;
 
@@ -135,11 +135,11 @@
 
 &lt;p&gt;As discussed in the above section about probabilities, the output of a classfier will be a number between 0 and 1. When performing classification, the most common loss function used is &lt;strong&gt;cross-entropy&lt;/strong&gt;. For the &lt;em&gt;binary classification&lt;/em&gt; panda-armadillo problem, it looks like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;575&quot; height=&quot;75&quot; class=&quot;center_4&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;575&quot; height=&quot;70&quot; class=&quot;center_4&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In the context of our example where $y_i=1$ is a picture of a panda and $y_i =0$ is a picture of an armadillo, we can add the following annotations:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy_Larger.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;575&quot; height=&quot;75&quot; class=&quot;center_5&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy_Larger.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;600&quot; height=&quot;292&quot; class=&quot;center_5&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Cross-entropy is used over the other loss functions mentioned above to improve training speed. If a classifier is correctly classifying images it will output extreme class probabilities, like &lt;em&gt;0.95&lt;/em&gt; or &lt;em&gt;0.03&lt;/em&gt;. When these extreme probabilities appear the training of your network will grind to a halt if you are using a loss function like mean squared error. The benefit of cross-entropy in classification is that it allows the model to keep learning at a decent rate, even when it is outputing extreme probabilities. (The deeper reason for this involves the magnitudes of gradients produced at extreme probabilities as a result of using a &lt;a href=&quot;https://en.wikipedia.org/wiki/Sigmoid_function&quot;&gt;sigmoid function&lt;/a&gt;.)&lt;/p&gt;
 

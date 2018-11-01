@@ -4,18 +4,18 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1"><!-- Begin Jekyll SEO tag v2.5.0 -->
 <title>Deep Dive: Loss Functions | Sam Ringer</title>
-<meta name="generator" content="Jekyll v3.8.3" />
+<meta name="generator" content="Jekyll v3.8.4" />
 <meta property="og:title" content="Deep Dive: Loss Functions" />
 <meta property="og:locale" content="en_US" />
-<link rel="canonical" href="/loss-functions/" />
-<meta property="og:url" content="/loss-functions/" />
+<link rel="canonical" href="http://localhost:4000/loss-functions/" />
+<meta property="og:url" content="http://localhost:4000/loss-functions/" />
 <meta property="og:site_name" content="Sam Ringer" />
 <meta property="og:type" content="article" />
 <meta property="article:published_time" content="2018-08-03T19:00:00+01:00" />
 <script type="application/ld+json">
-{"url":"/loss-functions/","headline":"Deep Dive: Loss Functions","dateModified":"2018-08-03T19:00:00+01:00","datePublished":"2018-08-03T19:00:00+01:00","@type":"BlogPosting","mainEntityOfPage":{"@type":"WebPage","@id":"/loss-functions/"},"@context":"http://schema.org"}</script>
+{"@type":"BlogPosting","url":"http://localhost:4000/loss-functions/","headline":"Deep Dive: Loss Functions","dateModified":"2018-08-03T19:00:00+01:00","datePublished":"2018-08-03T19:00:00+01:00","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/loss-functions/"},"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
-<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="/feed.xml" title="Sam Ringer" /></head>
+<link rel="stylesheet" href="/assets/main.css"><link type="application/atom+xml" rel="alternate" href="http://localhost:4000/feed.xml" title="Sam Ringer" /></head>
 <body><header class="site-header" role="banner">
 
   <div class="wrapper"><a class="site-title" rel="author" href="/">Sam Ringer</a><nav class="site-nav">
@@ -194,7 +194,7 @@
 
 <p>The above is very small peak into the loss function zoo. There are many simple extensions of the loss functions presented above, such as <em>mean absolute percentage error, hinge loss</em> and <em>logistic loss</em>.  Things can also get far more complex.</p>
 
-<p>For example, in a <em>Generative Adversarial Network (GAN)</em> two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also <em>when the second network performs worse</em> (and <em>vice versa</em>). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.</p>
+<p>For example, in a <em>Generative Adversarial Network (GAN)</em> two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also <em>when the second network performs worse</em> (and <em>vice versa</em>). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.  Furthermore, recent research has improved GANs by having them learn their own loss function!</p>
 
 <p>It is likely that as machine learning architectures become more complex, the loss functions used will do the same. However, as the above has shown, the core question that all current loss functions address is the same: <strong>what function can we use to obtain one number that represents how accurate our network is?</strong></p>
 

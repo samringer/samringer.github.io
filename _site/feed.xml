@@ -1,4 +1,78 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.3">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2018-10-06T19:43:43+01:00</updated><id>/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Deep Dive: Loss Functions</title><link href="/loss-functions/" rel="alternate" type="text/html" title="Deep Dive: Loss Functions" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>/loss-functions</id><content type="html" xml:base="/loss-functions/">&lt;style&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-01T07:46:37+00:00</updated><id>http://localhost:4000/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Training GANs Using Wasserstein Distance</title><link href="http://localhost:4000/wasserstein_distance/" rel="alternate" type="text/html" title="Training GANs Using Wasserstein Distance" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>http://localhost:4000/Wasserstein_Distance</id><content type="html" xml:base="http://localhost:4000/wasserstein_distance/">&lt;h3 id=&quot;kl-divergence&quot;&gt;KL Divergence&lt;/h3&gt;
+
+&lt;p&gt;A Generative Adversarial Network (or GAN) aims to generate fake data by learning to mimic the probability distribution of some real data, making it an example of &lt;em&gt;unsupervised learning&lt;/em&gt;. As the GAN aims to copy a real probability distribution, we need a loss function that can tell us how different two probability distributions are. In this case, we want the generated probability distribution to be as close to the real data probability distribution as possible, so we want to minimise said loss function.&lt;/p&gt;
+
+&lt;p&gt;Compairing the similarity of two probability distributions isn’t straightforward. The simplest way is to use a metric called the &lt;a href=&quot;https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence&quot;&gt;Kullback-Leibler divergence&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assests/images/WGAN/KL_Divergence.jpg&quot; alt=&quot;KL_Divergence&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;KL EQUATION ANNOTED IMAGE HERE!&lt;/p&gt;
+
+&lt;p&gt;KL divergence quantifies the difference in entropy between two distributions, but it is flawed. Note that the KL divergence between $P(x)$ and $Q(x)$ is different from the KL divergence between $Q(x)$ and $P(x)$. In other words, the distance between $P(x)$ and $Q(x)$ is different than the distance between $Q(x)$ and $P(x)$. This is like saying the distance from London to Manchester is different from the distance from Manchester to London.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Note: To all intents and purposes, when we say the &lt;u&gt;distance&lt;/u&gt; between two probability distribution, we mean the dissimilarity between them.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The fault is known as the &lt;em&gt;asymmetry&lt;/em&gt; of KL divergence. There are other issues with KL divergence. Most notably, when our generated probability distribution is undefined at a point (&lt;em&gt;i.e $Q(x) = 0&lt;/em&gt;) then the KL divergence shoots off to infinity.&lt;/p&gt;
+
+&lt;h3 id=&quot;jensen-shannon-divergence&quot;&gt;Jensen-Shannon Divergence&lt;/h3&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence&quot;&gt;Jensen-Shannon divergence&lt;/a&gt; aims to address this asymmetry. Like KL divergence, it is a measure of similarity between two probability distribution. However, unlike KL divergence, you get the same result by swapping $P(x)$ and $Q(x)$. The JS divergence is therefore &lt;em&gt;symmetric&lt;/em&gt;. Most traditional GANs aim to minimise a loss function that is equivalent to the JS divergence.&lt;/p&gt;
+
+&lt;p&gt;JS EQUATION ANNOTATED HERE!&lt;/p&gt;
+
+&lt;p&gt;Sadly, the JS divergence is not the final stop on our journey to find a suitable loss function for our GAN. The nature of how probability distributions like $P(x)$ and $Q(x)$ manifest in high dimensions means that there will be many scenarios during training where either $P(x)$ or $Q(x)$ is 0 (we will explore this is more detail later). In these cases, the JS divergence experiences a sharp change and becomes non-differentiable. What is really needed is a loss function that is symmetric and smooth for all possible $P(x)$ and $Q(x)$.&lt;/p&gt;
+
+&lt;h3 id=&quot;wasserstein-distance&quot;&gt;Wasserstein Distance&lt;/h3&gt;
+
+&lt;p&gt;The Wasserstein distance is such a loss function:&lt;/p&gt;
+
+&lt;p&gt;W DIST ANNOTED IMAGE HERE!&lt;/p&gt;
+
+&lt;p&gt;The Wasserstein distance is symmetric, but to understand its main advantage we have to take a closer look at how both the real and generated data are distrubted in a multidimensional space. (Apologies if the following gets quite abstract/dense…)&lt;/p&gt;
+
+&lt;p&gt;Consider the following analogy. The universe we live in is a rather big 3-dimensional space. Humans, however, are only found in a very small part of that space, &lt;em&gt;i.e Earth&lt;/em&gt;. Not only that but we are only found on the &lt;em&gt;surface&lt;/em&gt; of the Earth, which appears as 2-dimensional to us humans. So humans only inhabit a small 2-dimensional space inside a much larger 3-dimensional space. In more mathematical terms, you can say that humans live on a &lt;em&gt;2-manifold&lt;/em&gt; inside a 3-dimensional space.&lt;/p&gt;
+
+&lt;p&gt;MAYBE CHANGE DIMENSIONS&lt;/p&gt;
+
+&lt;p&gt;Now, in a slight change of direction, think about a stack of 128x128 pictures of Academy Award nominee Stanley Tucci.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;assets/images/WGAN/Tucc_Collage.png&quot; width=&quot;700px&quot; /&gt;&lt;/p&gt;
+
+&lt;html&gt;&lt;center&gt;&lt;i&gt;Tucc&lt;/i&gt;&lt;/center&gt;&lt;/html&gt;
+
+&lt;p&gt;Each picture of Tucci has 128x128 = 16,384 individual pixels. (Let’s keep things simply and ignore RGB). By abstracting a bit, try and imagine a 16,384 dimensional space. Each point in the space core correspondse to a different 128x128 picture. Moving along a single dimension in this space is equivalent to one pixel in our image changing value. Moreover, &lt;em&gt;every&lt;/em&gt; possible 128x128 picture you can think of correspondse to a different point in this space, whether it be a &lt;em&gt;funny examples here&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;FUNNY ANIMAL PICTURES HERE&lt;/p&gt;
+
+&lt;p&gt;In our 16,384 dimensional space, our real pictures of Tucci are going to only inhabit a very small space, most likely existsing on lower dimensional manifolds. This because there are far fewer 128x128 pictures of Tucci than there are 128x128 picures.&lt;/p&gt;
+
+&lt;p&gt;If we are training a generator to produce pictures of Stanley then the generator’s output images are likely to exist on a seperate set of manifolds in the 16,384 dimensional space. It is very, very unlikely that any of the real data’s manifolds and the generator’s manifolds are going to overlap in the multi-dimensional space. If this is the case then the probability distributions of the real and generated images are said to be &lt;em&gt;disjoint.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Know we can finally get to why the Wasserstein distance is a better loss function for training GANs than the KL or JS divergences. In the likely situation where $P(x)$ and $Q(x)$ are disjoint, the KL and JS divergences often produce bad gradients, making training both the discriminator and generator very difficult. However, when we use the Wasserstein distance as a loss function, we get good gradients &lt;em&gt;everywhere&lt;/em&gt;, even if the two probability distributions are disjoint.&lt;/p&gt;
+
+&lt;h3 id=&quot;learning-the-wasserstein-distance&quot;&gt;Learning The Wasserstein Distance&lt;/h3&gt;
+
+&lt;p&gt;The above equation showing the Wasserstein distance is quite complicated. Annoyingly, it can’t be hand-written into the code like a more simple loss function like &lt;em&gt;MSE&lt;/em&gt;. If coding the loss function isn’t possible then how can we possibly use it? This being machine learning, the answer should be obvious. We will use a neural network to learn the Wasserstein distance for itself!&lt;/p&gt;
+
+&lt;p&gt;This learning is possible using the &lt;em&gt;Kantorovich-Rubinstein duality&lt;/em&gt;, which is a result that expresses the Wasserstein distance in another form:&lt;/p&gt;
+
+&lt;p&gt;KANTOROVICH RUBINSTEIN EQUATION HERE!!!!&lt;/p&gt;
+
+&lt;p&gt;Take $f(x)$ to be the discriminator function (the discriminator takes in input $x$ and has an output $f(x)$). Consider the difference between what the generator outputs when it sees some real data and what it outputs when it sees some fake data. The Kantorovich-Rubenstein duality tells us that the upperbound of this difference is equal to the Wasserstein distance. This is a fairly remarkable result. However, it comes with a catch.&lt;/p&gt;
+
+&lt;h3 id=&quot;lipschitz-functions&quot;&gt;Lipschitz Functions&lt;/h3&gt;
+
+&lt;p&gt;The catch is that the function our discriminator learns must belong to a specific family of functions, known as &lt;em&gt;1-Lipschitz functions&lt;/em&gt;. Although it sounds complicated, Lipschitz functions can be understood on a fairly intuitive level. If we have two points, $x_1$ and $x_2$,  we can run them both through a function to get two new points, $y_1$ and $y_2$. If, for &lt;em&gt;any&lt;/em&gt; $x_1$ and $x_2$ we select, the distance between $y_1$ and $y_2$ is less than or equal to the distance between $x_1$ and $x_2$ then our function is 1-Lipschitz.&lt;/p&gt;
+
+&lt;p&gt;The last piece in the jigsaw is making sure the function the discriminator learns is 1-Lipschitz. This is still an ongoing area of research. So far the different approaches taken have been fairly hacky. They include:&lt;/p&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;Clipping the weights of all the weight matricies inside the discriminator so they stay within a fixed value. This is what was done in the &lt;a href=&quot;https://arxiv.org/abs/1701.07875&quot;&gt;original WGAN paper&lt;/a&gt;.&lt;/li&gt;
+  &lt;li&gt;Adding an extra term to our learnt Wasserstein distance loss function. This term penalises the discriminator if the norm of the gradients differ from 1. The resulting architecture is called &lt;a href=&quot;https://arxiv.org/abs/1704.00028&quot;&gt;WGAN-GP&lt;/a&gt;, the GP standing for &lt;em&gt;Gradient-Penalty&lt;/em&gt;.&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/1802.05957&quot;&gt;Spectral normalisation&lt;/a&gt;. This idea is more theoretically sound than the methods above. Each weight matrix of the discriminator is normalised in proportion to its largest eigenvalue. Doing so limits the ‘stretchiness’ of each matrix and ensures they are 1-Lipschitz.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;With any luck, you should now have enough knowledge of the Wasserstein distance to cringe everytime you read a GAN paper where an outdated loss function is used!&lt;/p&gt;</content><author><name></name></author><summary type="html">KL Divergence</summary></entry><entry><title type="html">Deep Dive: Loss Functions</title><link href="http://localhost:4000/loss-functions/" rel="alternate" type="text/html" title="Deep Dive: Loss Functions" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>http://localhost:4000/loss-functions</id><content type="html" xml:base="http://localhost:4000/loss-functions/">&lt;style&gt;
 .center_1 {
     display: block;
     margin-left: auto;
@@ -149,6 +223,6 @@
 
 &lt;p&gt;The above is very small peak into the loss function zoo. There are many simple extensions of the loss functions presented above, such as &lt;em&gt;mean absolute percentage error, hinge loss&lt;/em&gt; and &lt;em&gt;logistic loss&lt;/em&gt;.  Things can also get far more complex.&lt;/p&gt;
 
-&lt;p&gt;For example, in a &lt;em&gt;Generative Adversarial Network (GAN)&lt;/em&gt; two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also &lt;em&gt;when the second network performs worse&lt;/em&gt; (and &lt;em&gt;vice versa&lt;/em&gt;). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.&lt;/p&gt;
+&lt;p&gt;For example, in a &lt;em&gt;Generative Adversarial Network (GAN)&lt;/em&gt; two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also &lt;em&gt;when the second network performs worse&lt;/em&gt; (and &lt;em&gt;vice versa&lt;/em&gt;). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.  Furthermore, recent research has improved GANs by having them learn their own loss function!&lt;/p&gt;
 
 &lt;p&gt;It is likely that as machine learning architectures become more complex, the loss functions used will do the same. However, as the above has shown, the core question that all current loss functions address is the same: &lt;strong&gt;what function can we use to obtain one number that represents how accurate our network is?&lt;/strong&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary></entry></feed>

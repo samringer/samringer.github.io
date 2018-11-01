@@ -2,7 +2,6 @@
 layout: post
 title:  "Deep Dive: Loss Functions"
 date:   2018-08-03 20:00:00 +0200
-categories: loss functions machine learning
 permalink: /loss-functions/
 ---
 
@@ -160,6 +159,6 @@ Again, the loss functions gives us **one** number that represents how accurate o
 
 The above is very small peak into the loss function zoo. There are many simple extensions of the loss functions presented above, such as *mean absolute percentage error, hinge loss* and *logistic loss*.  Things can also get far more complex.
 
-For example, in a *Generative Adversarial Network (GAN)* two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also *when the second network performs worse* (and *vice versa*). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.
+For example, in a *Generative Adversarial Network (GAN)* two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also *when the second network performs worse* (and *vice versa*). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.  Furthermore, recent research has improved GANs by having them learn their own loss function!
 
 It is likely that as machine learning architectures become more complex, the loss functions used will do the same. However, as the above has shown, the core question that all current loss functions address is the same: **what function can we use to obtain one number that represents how accurate our network is?**

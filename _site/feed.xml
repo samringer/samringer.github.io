@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-01T07:46:37+00:00</updated><id>http://localhost:4000/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Training GANs Using Wasserstein Distance</title><link href="http://localhost:4000/wasserstein_distance/" rel="alternate" type="text/html" title="Training GANs Using Wasserstein Distance" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>http://localhost:4000/Wasserstein_Distance</id><content type="html" xml:base="http://localhost:4000/wasserstein_distance/">&lt;h3 id=&quot;kl-divergence&quot;&gt;KL Divergence&lt;/h3&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.8.4">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2018-11-02T07:24:39+00:00</updated><id>http://localhost:4000/</id><title type="html">Sam Ringer</title><subtitle></subtitle><entry><title type="html">Training GANs Using Wasserstein Distance</title><link href="http://localhost:4000/wasserstein_distance/" rel="alternate" type="text/html" title="Training GANs Using Wasserstein Distance" /><published>2018-08-03T19:00:00+01:00</published><updated>2018-08-03T19:00:00+01:00</updated><id>http://localhost:4000/Wasserstein_Distance</id><content type="html" xml:base="http://localhost:4000/wasserstein_distance/">&lt;h3 id=&quot;kl-divergence&quot;&gt;KL Divergence&lt;/h3&gt;
 
 &lt;p&gt;A Generative Adversarial Network (or GAN) aims to generate fake data by learning to mimic the probability distribution of some real data, making it an example of &lt;em&gt;unsupervised learning&lt;/em&gt;. As the GAN aims to copy a real probability distribution, we need a loss function that can tell us how different two probability distributions are. In this case, we want the generated probability distribution to be as close to the real data probability distribution as possible, so we want to minimise said loss function.&lt;/p&gt;
 
 &lt;p&gt;Compairing the similarity of two probability distributions isn’t straightforward. The simplest way is to use a metric called the &lt;a href=&quot;https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence&quot;&gt;Kullback-Leibler divergence&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;assests/images/WGAN/KL_Divergence.jpg&quot; alt=&quot;KL_Divergence&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/WGAN/KL_Divergence.jpg&quot; alt=&quot;KL_Divergence&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;KL EQUATION ANNOTED IMAGE HERE!&lt;/p&gt;
 
@@ -118,7 +118,7 @@
 
 &lt;p&gt;Let’s think about a simple classifier. We have a big pile of pictures that are either a picture of a panda or an armadillo and we want our network to be able to sort them into two piles:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Pandas_Armadillos.png&quot; alt=&quot;Pandas_Armadillos&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/Pandas_Armadillos.png&quot; alt=&quot;Pandas_Armadillos&quot; /&gt;&lt;/p&gt;
 
 &lt;html&gt;&lt;center&gt;&lt;i&gt;Pandas &amp;amp; Armadillos&lt;/i&gt;&lt;/center&gt;&lt;/html&gt;
 
@@ -179,11 +179,11 @@
 
 &lt;p&gt;Unsuprisingly, taking the mean of a series of absolute errors is known as &lt;strong&gt;mean absolute error&lt;/strong&gt; and is written mathematically like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Mean_Absolute_Error.png&quot; alt=&quot;Mean_Absolute_Error&quot; width=&quot;455&quot; height=&quot;75&quot; class=&quot;center_1&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/Mean_Absolute_Error.png&quot; alt=&quot;Mean_Absolute_Error&quot; width=&quot;455&quot; height=&quot;75&quot; class=&quot;center_1&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Clearing this up with some annotation:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Mean_Absolute_Error_Actual.png&quot; alt=&quot;Mean_Absolute_Error_Annotated&quot; width=&quot;510&quot; height=&quot;240&quot; class=&quot;center_2&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/Mean_Absolute_Error_Actual.png&quot; alt=&quot;Mean_Absolute_Error_Annotated&quot; width=&quot;510&quot; height=&quot;240&quot; class=&quot;center_2&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;(The eagle-eyed with some calculus understanding may spot that mean absolute error is not differentiable when the error is 0. Fear not as this can be side-stepped through reparameterization.)&lt;/p&gt;
 
@@ -193,11 +193,11 @@
 
 &lt;p&gt;By changing the absolute difference in mean absolute error to a squared difference, we can easily write down the loss function for mean squared error.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Mean_Squared_Error.png&quot; alt=&quot;Mean_Squared_Error&quot; width=&quot;465&quot; height=&quot;75&quot; class=&quot;center_3&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/Mean_Squared_Error.png&quot; alt=&quot;Mean_Squared_Error&quot; width=&quot;465&quot; height=&quot;75&quot; class=&quot;center_3&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Again, adding in some annotation:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Mean_Squared_Error_Larger.png&quot; alt=&quot;Mean_Squared_Error_Annotated&quot; width=&quot;560&quot; height=&quot;215&quot; class=&quot;center_6&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/Mean_Squared_Error_Larger.png&quot; alt=&quot;Mean_Squared_Error_Annotated&quot; width=&quot;560&quot; height=&quot;215&quot; class=&quot;center_6&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The squared term means that larger differences between $\hat{y}_i$ and $y_i$ will contribute far more to the final value of the loss function than smaller differences. Mean squared error is also directly differentiable so we don’t have to perform any reparameterization.&lt;/p&gt;
 
@@ -209,11 +209,11 @@
 
 &lt;p&gt;As discussed in the above section about probabilities, the output of a classfier will be a number between 0 and 1. When performing classification, the most common loss function used is &lt;strong&gt;cross-entropy&lt;/strong&gt;. For the &lt;em&gt;binary classification&lt;/em&gt; panda-armadillo problem, it looks like this:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;575&quot; height=&quot;70&quot; class=&quot;center_4&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/Cross_Entropy.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;575&quot; height=&quot;70&quot; class=&quot;center_4&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;In the context of our example where $y_i=1$ is a picture of a panda and $y_i =0$ is a picture of an armadillo, we can add the following annotations:&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/Cross_Entropy_Larger.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;600&quot; height=&quot;292&quot; class=&quot;center_5&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://localhost:4000/assets/images/Cross_Entropy_Larger.png&quot; alt=&quot;Cross_Entropy&quot; width=&quot;600&quot; height=&quot;292&quot; class=&quot;center_5&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Cross-entropy is used over the other loss functions mentioned above to improve training speed. If a classifier is correctly classifying images it will output extreme class probabilities, like &lt;em&gt;0.95&lt;/em&gt; or &lt;em&gt;0.03&lt;/em&gt;. When these extreme probabilities appear the training of your network will grind to a halt if you are using a loss function like mean squared error. The benefit of cross-entropy in classification is that it allows the model to keep learning at a decent rate, even when it is outputing extreme probabilities. (The deeper reason for this involves the magnitudes of gradients produced at extreme probabilities as a result of using a &lt;a href=&quot;https://en.wikipedia.org/wiki/Sigmoid_function&quot;&gt;sigmoid function&lt;/a&gt;.)&lt;/p&gt;
 

@@ -50,7 +50,7 @@ When building a new deep learning model, there are four fundamental things that 
 
 Let's think about a simple classifier. We have a big pile of pictures that are either a picture of a panda or an armadillo and we want our network to be able to sort them into two piles:
 
-![Pandas_Armadillos](/images/Pandas_Armadillos.png)
+![Pandas_Armadillos]({{site.url}}/assets/images/Pandas_Armadillos.png)
 
 <html><center><i>Pandas & Armadillos</i></center></html>  
 
@@ -109,11 +109,11 @@ The loss function in the example above considers the raw difference between the 
 
 Unsuprisingly, taking the mean of a series of absolute errors is known as **mean absolute error** and is written mathematically like this:
 
-<img src="/images/Mean_Absolute_Error.png" alt="Mean_Absolute_Error" width="455" height="75" class="center_1">
+<img src="{{site.url}}/assets/images/Mean_Absolute_Error.png" alt="Mean_Absolute_Error" width="455" height="75" class="center_1">
 
 Clearing this up with some annotation:
 
-<img src="/images/Mean_Absolute_Error_Actual.png" alt="Mean_Absolute_Error_Annotated" width="510" height="240" class="center_2">
+<img src="{{site.url}}/assets/images/Mean_Absolute_Error_Actual.png" alt="Mean_Absolute_Error_Annotated" width="510" height="240" class="center_2">
 
 (The eagle-eyed with some calculus understanding may spot that mean absolute error is not differentiable when the error is 0. Fear not as this can be side-stepped through reparameterization.)
 
@@ -123,11 +123,11 @@ One issue with mean absolute error is that all errors are treated 'equally'. Oft
 
 By changing the absolute difference in mean absolute error to a squared difference, we can easily write down the loss function for mean squared error.
 
-<img src="/images/Mean_Squared_Error.png" alt="Mean_Squared_Error" width="465" height="75" class="center_3">
+<img src="{{site.url}}/assets/images/Mean_Squared_Error.png" alt="Mean_Squared_Error" width="465" height="75" class="center_3">
 
 Again, adding in some annotation:
 
-<img src="/images/Mean_Squared_Error_Larger.png" alt="Mean_Squared_Error_Annotated" width="560" height="215" class="center_6">
+<img src="{{site.url}}/assets/images/Mean_Squared_Error_Larger.png" alt="Mean_Squared_Error_Annotated" width="560" height="215" class="center_6">
 
 The squared term means that larger differences between $\hat{y}_i$ and $y_i$ will contribute far more to the final value of the loss function than smaller differences. Mean squared error is also directly differentiable so we don't have to perform any reparameterization.
 
@@ -139,13 +139,13 @@ When ever we are using our network to predict a continous value (*like the price
 
 As discussed in the above section about probabilities, the output of a classfier will be a number between 0 and 1. When performing classification, the most common loss function used is **cross-entropy**. For the *binary classification* panda-armadillo problem, it looks like this:
 
-<img src="/images/Cross_Entropy.png" alt="Cross_Entropy" width="575" height="70" class="center_4">
+<img src="{{site.url}}/assets/images/Cross_Entropy.png" alt="Cross_Entropy" width="575" height="70" class="center_4">
 
 
 
 In the context of our example where $y_i=1$ is a picture of a panda and $y_i =0$ is a picture of an armadillo, we can add the following annotations:
 
-<img src="/images/Cross_Entropy_Larger.png" alt="Cross_Entropy" width="600" height="292" class="center_5">
+<img src="{{site.url}}/assets/images/Cross_Entropy_Larger.png" alt="Cross_Entropy" width="600" height="292" class="center_5">
 
 Cross-entropy is used over the other loss functions mentioned above to improve training speed. If a classifier is correctly classifying images it will output extreme class probabilities, like *0.95* or *0.03*. When these extreme probabilities appear the training of your network will grind to a halt if you are using a loss function like mean squared error. The benefit of cross-entropy in classification is that it allows the model to keep learning at a decent rate, even when it is outputing extreme probabilities. (The deeper reason for this involves the magnitudes of gradients produced at extreme probabilities as a result of using a [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function).)
 

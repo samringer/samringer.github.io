@@ -11,7 +11,7 @@ A Generative Adversarial Network (or GAN) aims to generate fake data by learning
 
 Compairing the similarity of two probability distributions isn't straightforward. The simplest way is to use a metric called the [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence). 
 
-![KL_Divergence](assests/images/WGAN/KL_Divergence.jpg)
+![KL_Divergence]({{site.url}}/assets/images/WGAN/KL_Divergence.jpg)
 
 KL EQUATION ANNOTED IMAGE HERE!
 

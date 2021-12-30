@@ -72,7 +72,7 @@ We add a bit of detail by also counting the following:
 
 This allows us to use a method of scoring called [precision & recall](https://en.wikipedia.org/wiki/Precision_and_recall). The precision is the ratio of *true positives* to *total predictions* and the recall is the ratio of *true positives* to *total positives*. The harmonic mean of the precision and recall is called the [F score](https://en.wikipedia.org/wiki/F1_score). A higher F score means a more accurate model.
 
-The precision and recall technique has one big problem in the context of deep learning. It is *non-differntiable*. This means that, although precision and recall can tell us how good the predictions are at the moment, they can't be used to train the network to produce better predictions in the future.
+The precision and recall technique has one big problem in the context of deep learning. It is *non-differentiable*. This means that, although precision and recall can tell us how good the predictions are at the moment, they can't be used produce a gradient which can train the model.
 
 **Idea 2: Change To Classifier Confidence**
 

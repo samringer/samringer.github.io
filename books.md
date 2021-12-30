@@ -81,7 +81,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **The Colour Of Magic**  Terry Pratchett  
 **How To Create A Mind**  Ray Kurzweil  
 **Carpe Diem Regained**  Roman Krznaric  
-**'Guards! Guards!'**  Terry Pratchett  
+**Guards! Guards!**  Terry Pratchett  
 **Hackers & Painters**  Paul Graham  
 **ReWork**  Jason Fried, David Heinemeier Hansson,  
 **The Three-Body Problem**  Cixin Liu  
@@ -182,7 +182,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **Thus Spoke Zarathustra**  Friedrich Nietzsche  
 **Vagabonding: An Uncommon Guide to the Art of Long-Term World Travel**  Rolf Potts  
 **Fight Club**  Chuck Palahniuk  
-**Thinking: The New Science of Decision-Making, Problem-Solving, and Prediction in Life and Markets**  Mr. John Brockman  
+**Thinking: The New Science of Decision-Making, Problem-Solving, and Prediction in Life and Markets**  John Brockman  
 <span style='color:blue'>**Thinking Physics**  Lewis C. Epstein</span>  
 **Letters from a Stoic: Epistulae Morales Ad Lucilium**  Seneca  
 **The Spirit Level: Why Greater Equality Makes Societies Stronger**  Richard Wilkinson, Kate Pickett  
@@ -193,19 +193,19 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **Media Control: The Spectacular Achievements of Propaganda**  Noam Chomsky  
 **Mastermind: How to Think Like Sherlock Holmes**  Maria Konnikova  
 **The Great Gatsby**  F. Scott Fitzgerald  
-**The Theoretical Minimum: What You Need to Know to Start Doing Physics**  George Hrabovsky  
+**The Theoretical Minimum: What You Need to Know to Start Doing Physics**  Leonard Susskind, George Hrabovsky  
 **Introducing Quantum Theory**  Joseph P. McEvoy, Oscar Zarate, Richard Appignanesi  
 **Tractatus Logico-Philosophicus**  Ludwig Wittgenstein  
 **Reactions: The Private Life of Atoms**  Peter Atkins  
-**This Explains Everything: 150 Deep, Beautiful, and Elegant Theories of How the World Works**  Mr. John Brockman  
+**This Explains Everything: 150 Deep, Beautiful, and Elegant Theories of How the World Works**  John Brockman  
 **The Physics of Wall Street: A Brief History of Predicting the Unpredictable**  James Owen Weatherall  
 **Isaac Newton**  James Gleick  
-**"Surely You're Joking, Mr. Feynman!": Adventures of a Curious Character**  Richard Phillips Feynman, Ralph Leighton, Edward Hutchings  
+**"Surely You're Joking, Mr. Feynman!": Adventures of a Curious Character**  Richard P. Feynman, Ralph Leighton  
 **Structures: Or Why Things Don't Fall Down**  J. E. Gordon  
 <span style='color:blue'>**Moonwalking with Einstein: The Art and Science of Remembering Everything**  Joshua Foer</span>  
 **How the World Works**  Noam Chomsky  
 **The Quantum Universe: Everything that Can Happen Does Happens**  Brian Cox, Jeffrey Robert Forshaw  
-**The Two Cultures**  C. P. Snow, Stefan Collini  
+**The Two Cultures**  C. P. Snow  
 **Guns, Germs, and Steel: The Fates of Human Societies**  Jared M. Diamond  
 **Introduction to Chemical Engineering: Tools for Today and Tomorrow**  Kenneth A. Solen, John Harb  
 **Cloud Atlas**  David Mitchell  
@@ -218,11 +218,11 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **Cancer: A Very Short Introduction**  Nick James, Nicholas James  
 **The Book of General Ignorance**  John Lloyd, John Mitchinson  
 **The Epigenetics Revolution: How Modern Biology is Rewriting Our Understanding of Genetics, Disease, and Inheritance**  Nessa Carey  
-**Life, the Universe and Everything: Hitchhiker's Guide 3**  Douglas Adams  
+**Life, the Universe and Everything**  Douglas Adams  
 **Nietzsche: A Very Short Introduction**  Michael Tanner  
 **Hitch-22: A Memoir**  Christopher Hitchens  
 **Genome: The Autobiography of a Species in 23 Chapters**  Matt Ridley  
-**This Will Make You Smarter: 150 New Scientific Concepts to Improve Your Thinking**  Mr. John Brockman  
+**This Will Make You Smarter: 150 New Scientific Concepts to Improve Your Thinking**  John Brockman  
 **Seventeen Equations that Changed the World**  Ian Stewart  
 **Shakespeare**  Bill Bryson  
 <span style='color:green'>**The Hitchhiker's Guide to the Galaxy**  Douglas Adams</span>  
@@ -244,7 +244,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **Oryx and Crake**  Margaret Atwood  
 **Infotopia: How Many Minds Produce Knowledge**  Cass R. Sunstein  
 **Stumbling on Happiness**  Daniel Gilbert  
-**Why Does E=MC2 (and why Should We Care?)**  Brian Cox, Jeffrey Robert Forshaw  
+**Why Does e=mc<sup>2</sup> (And Why Should We Care?)**  Brian Cox, Jeffrey Robert Forshaw  
 **The God Delusion**  Richard Dawkins  
 **Irrationality**  Stuart Sutherland  
 **The Philosophy Gym: 25 Short Adventures in Thinking**  Stephen Law  

@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A Summary Of Anthropic's First Paper"
-date:   2018-08-03 20:00:00 +0200
+date:   2021-12-29 20:00:00 +0200
 permalink: /anthropic_paper/
 mathjax: true
 ---

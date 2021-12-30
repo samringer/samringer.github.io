@@ -25,16 +25,14 @@ The field of trying to get computers to generate data that is indistinguishable 
 
 ### GANs & KL Divergence
 
-A big breakthrough in generative modelling came with the introduction of the *Generative Adversarial Network*, or *GAN* for short. A GAN is a specific architecture of neural network that learns to produce fake data by mimic the underlying *probability distribution* of some real data.
+A breakthrough in generative modelling came with the introduction of the *Generative Adversarial Network*, or *GAN* for short. A GAN is a specific architecture of neural network that learns to produce fake data by mimic the underlying *probability distribution* of some real data.
 
-As the GAN aims to copy a real probability distribution, we need a loss function that can tell us how different two probability distributions are. In this case, we want the generated probability distribution to be as close to the real data probability distribution as possible, so we want to minimise said loss function.
-
-Compairing the similarity of two PDFs isn't straightforward. The simplest way is to use a metric called the [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence). 
+As the GAN aims to copy a real probability distribution, we need a loss function that can tell us how different two probability distributions are (the true PDF and the generated PDF). Compairing the similarity of two PDFs isn't straightforward. The simplest way is to use a metric called the [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence). 
 
 ![KL_Divergence]({{site.url}}/assets/images/WGAN/KL_Divergence.jpg)
 
 
-KL divergence quantifies the difference in entropy between two distributions, but it is flawed. Note that the KL divergence between $P(x)$ and $Q(x)$ is different from the KL divergence between $Q(x)$ and $P(x)$. This is like saying the distance from London to Manchester is different from the distance from Manchester to London.
+Although simple to calculate, the KL divergence is flawed. Note that the KL divergence between $P(x)$ and $Q(x)$ is different from the KL divergence between $Q(x)$ and $P(x)$. This is like saying the distance from London to Manchester is different from the distance from Manchester to London.
 
 *Note: To all intents and purposes, when we say the <u>distance</u> between two probability distribution, we mean the dissimilarity between them.*
 
@@ -42,7 +40,7 @@ The fault is known as the *asymmetry* of KL divergence. There are other issues w
 
 ### Jensen-Shannon Divergence
 
-[Jensen-Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence) aims to address this asymmetry. Like KL divergence, it is a measure of similarity between two probability distribution. However, unlike KL divergence, you get the same result by swapping $P(x)$ and $Q(x)$. The JS divergence is therefore *symmetric*. Most traditional GANs aim to minimise a loss function that is equivalent to the JS divergence.
+[Jensen-Shannon divergence](https://en.wikipedia.org/wiki/Jensen%E2%80%93Shannon_divergence) aims to address this asymmetry. Like KL divergence, it is a measure of similarity between two PDFs. However, unlike the KL divergence, you get the same result by swapping $P(x)$ and $Q(x)$. The JS divergence is therefore *symmetric*. Most GANs (as of 2018) aim to minimise a loss function that is equivalent to the JS divergence.
 
 ![JS_Divergence]({{site.url}}/assets/images/WGAN/JS_Divergence_Transparent.png)
 
@@ -64,7 +62,7 @@ Now, in a slight change of direction, think about a stack of 128x128 pictures of
 
 <br>
 
-Each picture of Tucci has 128x128 = 16,384 individual pixels. (Let's keep things simply and ignore RGB). By abstracting a bit, try and imagine a 16,384 dimensional space. Each point in the space core correspondse to a different 128x128 picture. Moving along a single dimension in this space is equivalent to one pixel in our image changing value. Moreover, *every* possible 128x128 picture you can think of correspondse to a different point in this space, whether it be a cloud, a Piña Colada, or just some random noise.
+Each picture of Tucci has 128x128 = 16,384 individual pixels. (Let's keep things simply and ignore RGB). By abstracting a bit, try and imagine a 16,384 dimensional space. Each point in the space corresponds to a different 128x128 picture. Moving along a single dimension in this space is equivalent to one pixel in our image changing value. Moreover, *every* possible 128x128 picture you can think of correspondse to a different point in this space, whether it be a cloud, a Piña Colada, or just some random noise.
 
 <br>
 
@@ -78,7 +76,7 @@ Each picture of Tucci has 128x128 = 16,384 individual pixels. (Let's keep things
 
 In our 16,384 dimensional space, our real pictures of Tucci are going to only inhabit a very small space, most likely existsing on lower dimensional manifolds. This because there are far fewer 128x128 pictures of Tucci than there are possible 128x128 pictures. 
 
-If we are training a generator to produce pictures of Stanley then the generator's output images are likely to exist on a seperate set of manifolds in the 16,384 dimensional space. It is very, very unlikely that any of the real data's manifolds and the generator's manifolds are going to overlap in the multi-dimensional space. If this is the case then the probability distributions of the real and generated images are said to be *disjoint.* 
+If we are training a generator to produce pictures of Stanley then the generator's output images are likely to exist on a separate set of manifolds in the 16,384 dimensional space. It is very, very unlikely that any of the real data's manifolds and the generator's manifolds are going to overlap in the multi-dimensional space. If this is the case then the probability distributions of the real and generated images are said to be *disjoint.* 
 
 Now we can finally get to why the Wasserstein distance is a better loss function for training GANs than the KL or JS divergences. In the likely situation where $P(x)$ and $Q(x)$ are disjoint, the KL and JS divergences often produce bad gradients, making training both the discriminator and generator very difficult. However, when we use the Wasserstein distance as a loss function, we get good gradients *everywhere*, even if the two probability distributions are disjoint.
 
@@ -98,6 +96,6 @@ The catch is that the function our discriminator learns must belong to a specifi
 
 The last piece in the jigsaw is making sure the function the discriminator learns is 1-Lipschitz. This is still an ongoing area of research. So far the different approaches taken have been fairly hacky. They include:
 
-* Clipping the weights of all the weight matricies inside the discriminator so they stay within a fixed value. This is what was done in the [original WGAN paper](https://arxiv.org/abs/1701.07875).
+* Clipping the weights of all the weight matrices inside the discriminator so they stay within a fixed value. This is what was done in the [original WGAN paper](https://arxiv.org/abs/1701.07875).
 * Adding an extra term to our learnt Wasserstein distance loss function. This term penalises the discriminator if the norm of the gradients differ from 1. The resulting architecture is called [WGAN-GP](https://arxiv.org/abs/1704.00028), the GP standing for *Gradient-Penalty*.
 * [Spectral normalisation](https://arxiv.org/abs/1802.05957). This idea is more theoretically sound than the methods above. Each weight matrix of the discriminator is normalised in proportion to its largest eigenvalue. Doing so limits the 'stretchiness' of each matrix and ensures they are 1-Lipschitz.

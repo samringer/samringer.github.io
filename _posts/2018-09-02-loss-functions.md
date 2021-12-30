@@ -94,7 +94,7 @@ or in the case of the second example:
 
 (If the second example doesn't make sense remember that an output of "*0% panda*" is equivalent to "*100% armadillo*".)
 
-This is the first example we have come across of a **loss function**. A loss function lets us combine two numbers (the models prediction and the actual label) into **one number.** The simple loss function above finds the difference between the prediction and the label (*100% - 88% = 12%* for example 1 and *3% - 0% = 3%* for example 2. In practice these are outputted as decimals *0.12* and *0.03*.)
+This is the first example we have come across of a **loss function**. A loss function lets us combine two numbers (the model's prediction and the actual label) into **one number.** The simple loss function above finds the difference between the prediction and the label (*100% - 88% = 12%* for example 1 and *3% - 0% = 3%* for example 2. In practice these are outputted as decimals *0.12* and *0.03*.)
 
 The errors calculated by the loss function are known as the **loss**. We want to minimise the error and so a loss closer to 0 is better.
 
@@ -116,7 +116,7 @@ Clearing this up with some annotation:
 
 <img src="{{site.url}}/assets/images/Loss_Functions/Mean_Absolute_Error_Actual.png" alt="Mean_Absolute_Error_Annotated" width="510" height="240" class="center_2">
 
-(The eagle-eyed with some calculus understanding may spot that mean absolute error is not differentiable when the error is 0. Fear not as this can be side-stepped through reparameterization.)
+(The eagle-eyed with some calculus understanding may spot that mean absolute error is not differentiable when the error is 0. This isn't really an issue as the loss will almost never be exactly 0.)
 
 One issue with mean absolute error is that all errors are treated 'equally'. Often we will want to penalise larger errors significantly more than small ones. The **mean squared error** loss function lets us do so.
 
@@ -130,13 +130,13 @@ Again, adding in some annotation:
 
 <img src="{{site.url}}/assets/images/Loss_Functions/Mean_Squared_Error_Larger.png" alt="Mean_Squared_Error_Annotated" width="560" height="215" class="center_6">
 
-The squared term means that larger differences between $\hat{y}_i$ and $y_i$ will contribute far more to the final value of the loss function than smaller differences. Mean squared error is also directly differentiable so we don't have to perform any reparameterization.
+The squared term means that larger differences between $\hat{y}_i$ and $y_i$ will contribute far more to the final value of the loss function than smaller differences.
 
 ### Classification & Cross-Entropy
 
 The mean squared and mean absolute error loss function are most suited to a type of prediction known as *regression*. 
 
-When ever we are using our network to predict a continous value (*like the price of a house* or *a person's height*) we are performing regression. This is opposed to *classification* where we try to predict the *class* of something (*e.g. What breed of dog is in this picture? Is this picture a panda or an armadillo?*).
+When ever we are using our network to predict a continuous value (*like the price of a house* or *a person's height*) we are performing regression. This is opposed to *classification* where we try to predict the *class* of something (*e.g. What breed of dog is in this picture? Is this picture a panda or an armadillo?*).
 
 As discussed in the above section about probabilities, the output of a classfier will be a number between 0 and 1. When performing classification, the most common loss function used is **cross-entropy**. For the *binary classification* panda-armadillo problem, it looks like this:
 
@@ -148,10 +148,6 @@ In the context of our example where $y_i=1$ is a picture of a panda and $y_i =0$
 
 <img src="{{site.url}}/assets/images/Loss_Functions/Cross_Entropy_Larger.png" alt="Cross_Entropy" width="600" height="292" class="center_5">
 
-Cross-entropy is used over the other loss functions mentioned above to improve training speed. If a classifier is correctly classifying images it will output extreme class probabilities, like *0.95* or *0.03*. When these extreme probabilities appear the training of your network will grind to a halt if you are using a loss function like mean squared error. The benefit of cross-entropy in classification is that it allows the model to keep learning at a decent rate, even when it is outputing extreme probabilities. (The deeper reason for this involves the magnitudes of gradients produced at extreme probabilities as a result of using a [sigmoid function](https://en.wikipedia.org/wiki/Sigmoid_function).)
-
-
-
 Again, the loss functions gives us **one** number that represents how accurate our network is.
 
 
@@ -160,6 +156,6 @@ Again, the loss functions gives us **one** number that represents how accurate o
 
 The above is very small peak into the loss function zoo. There are many simple extensions of the loss functions presented above, such as *mean absolute percentage error, hinge loss* and *logistic loss*.  Things can also get far more complex.
 
-For example, in a *Generative Adversarial Network (GAN)* two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also *when the second network performs worse* (and *vice versa*). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.  Furthermore, recent research has improved GANs by having them learn their own loss function!
+For example, in a *Generative Adversarial Network (GAN)* two neural-networks are actively fighting against each other. The loss function for the first neural network produces a better value not only when the first network performs better, but also *when the second network performs worse* (and *vice versa*). To obtain one coherent loss function for the whole system, the two individual loss functions must be combined into a mini-max problem.
 
-It is likely that as machine learning architectures become more complex, the loss functions used will do the same. However, as the above has shown, the core question that all current loss functions address is the same: **what function can we use to obtain one number that represents how accurate our network is?**
+It is likely that as machine learning architectures become more complex, the loss functions used will do the same. However, as the above has shown, the core question that all current loss functions address is the same: **what function can we use to obtain one differentiable number that represents how accurate our network is?**

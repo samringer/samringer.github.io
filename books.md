@@ -244,7 +244,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **Oryx and Crake**  Margaret Atwood  
 **Infotopia: How Many Minds Produce Knowledge**  Cass R. Sunstein  
 **Stumbling on Happiness**  Daniel Gilbert  
-**Why Does E: (and why Should We Care?)**  Brian Cox, Jeffrey Robert Forshaw  
+**Why Does E=MC2 (and why Should We Care?)**  Brian Cox, Jeffrey Robert Forshaw  
 **The God Delusion**  Richard Dawkins  
 **Irrationality**  Stuart Sutherland  
 **The Philosophy Gym: 25 Short Adventures in Thinking**  Stephen Law  

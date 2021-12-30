@@ -30,14 +30,14 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **The Spider Network** David Enrich  
 <span style='color:blue'>**Invent And Wander** Jeff Bezos</span>  
 **Hell Yeah Or No** Derek Sivers  
-**The Everything Store** Brad Stone  
+<span style='color:blue'>**The Everything Store** Brad Stone</span>  
 **The Obelisk Gate** N K Jemisin  
 **The Fifth Season** N K Jemisin  
 **Feet Of Clay** Terry Pratchett  
 <span style='color:green'>**Quarantine** Greg Egan</span>  
 **The Almanack Of Naval Ravikant** Eric Jorgenson  
 <span style='color:blue'>**The Diamond Age** Neal Stephenson</span>  
-<span style='color:blue'>**Slate Star Codex Abridged** Scott Alexander</span>  
+<span style='color:green'>**Slate Star Codex Abridged** Scott Alexander</span>  
 **The Deficit Myth** Stephanie Kelton  
 **Black Box Thinking** Matthew Syed  
 <span style='color:blue'>**How To Actually Change Your Mind** Eliezer Yudkowsky</span>  
@@ -118,7 +118,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 <span style='color:blue'>**Flowers for Algernon**  Daniel Keyes</span>  
 **The WTF?! Economy**  Tim O'Reilly  
 **Skin in the Game: Hidden Asymmetries in Daily Life**  Nassim Nicholas Taleb  
-**Doing Good Better: Effective Altruism and a Radical New Way to Make a Difference**  William MacAskill  
+<span style='color:blue'>**Doing Good Better: Effective Altruism and a Radical New Way to Make a Difference**  William MacAskill</span>  
 **The Silence of the Lambs**  Thomas Harris  
 **Stealing Fire: How Silicon Valley, the Navy SEALs, and Maverick Scientists Are Revolutionizing the Way We Live and Work**  Steven Kotler, Jamie Wheal  
 **Cryptonomicon**  Neal Stephenson  

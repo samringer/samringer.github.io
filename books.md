@@ -232,7 +232,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **A Life Decoded: My Genome: My Life**  J. Craig Venter  
 <span style='color:blue'>**The Rational Optimist: How Prosperity Evolves**  Matt Ridley</span>  
 **Brave New World Revisited**  Aldous Huxley  
-**The go-between**  L. P. Hartley, Colm TÃ³ibÃ­n  
+**The Go-Between**  L. P. Hartley  
 **The Selfish Gene**  Richard Dawkins  
 **Freakonomics: A Rogue Economist Explores the Hidden Side of Everything**  Steven D. Levitt, Stephen J. Dubner  
 **Wuthering Heights**  Emily Bronte  

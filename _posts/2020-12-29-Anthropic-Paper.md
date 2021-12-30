@@ -6,7 +6,7 @@ permalink: /anthropic_paper/
 mathjax: true
 ---
 
-**The original version of this post on LessWrong is here: https://bit.ly/3mEYpkb**
+**The original version of this post on LessWrong is here:** [https://bit.ly/3mEYpkb](https://bit.ly/3mEYpkb)
 
 *"Larger models tend to perform better at most tasks, and there is no reason to expect naive alignment-related tasks to be an exception."*
 

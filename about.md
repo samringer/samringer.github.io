@@ -5,7 +5,7 @@ permalink: /about/
 ---
 
 Hello! My name is Sam.
-I think AGI is going to be the "final boss" for humanity. I'm committed to maximizing the probability AI goes well.
+I'm seriously concerned about the risks AGI poses to humanity and I'm committed to mitigating this risk. If you have any opportunites to help work on alignment and think I could help then please get in contact!
 
 
 [jekyll-organization]: https://github.com/jekyll

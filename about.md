@@ -4,7 +4,8 @@ title: About
 permalink: /about/
 ---
 
-This the about section for Deep Dive
+Hello! My name is Sam.
+I think AGI is going to be the "final boss" for humanity. I'm committed to maximizing the probability AI goes well.
 
 
 [jekyll-organization]: https://github.com/jekyll

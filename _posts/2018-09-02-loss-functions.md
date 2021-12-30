@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Deep Dive: Loss Functions"
+title:  "Loss Functions"
 date:   2018-08-03 20:00:00 +0200
 permalink: /loss-functions/
 mathjax: true

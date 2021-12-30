@@ -18,10 +18,9 @@ Now let's think about a different problem. I want you to draw for me a dog. Not 
 
 <br>
 
-Astonishingly, the dog on the right has never existed in any shape or form. It was generated in [this](https://arxiv.org/abs/1809.11096) paper.
+The dog on the right has never existed in any shape or form. It was generated in [this](https://arxiv.org/abs/1809.11096) paper.
 
 The field of trying to get computers to generate data that is indistinguishable from real data (whether that be pictures, audio, text *etc.*) is known as *generative modelling*.
-
 
 
 ### GANs & KL Divergence
@@ -30,12 +29,9 @@ A big breakthrough in generative modelling came with the introduction of the *Ge
 
 As the GAN aims to copy a real probability distribution, we need a loss function that can tell us how different two probability distributions are. In this case, we want the generated probability distribution to be as close to the real data probability distribution as possible, so we want to minimise said loss function.
 
-When dealing with probability distributions, it is common to use *probability density functions*, or *PDFs*, which are a function that return how likely a given input is.
-
 Compairing the similarity of two PDFs isn't straightforward. The simplest way is to use a metric called the [Kullback-Leibler divergence](https://en.wikipedia.org/wiki/Kullback%E2%80%93Leibler_divergence). 
 
 ![KL_Divergence]({{site.url}}/assets/images/WGAN/KL_Divergence.jpg)
-
 
 
 KL divergence quantifies the difference in entropy between two distributions, but it is flawed. Note that the KL divergence between $P(x)$ and $Q(x)$ is different from the KL divergence between $Q(x)$ and $P(x)$. This is like saying the distance from London to Manchester is different from the distance from Manchester to London.
@@ -105,5 +101,3 @@ The last piece in the jigsaw is making sure the function the discriminator learn
 * Clipping the weights of all the weight matricies inside the discriminator so they stay within a fixed value. This is what was done in the [original WGAN paper](https://arxiv.org/abs/1701.07875).
 * Adding an extra term to our learnt Wasserstein distance loss function. This term penalises the discriminator if the norm of the gradients differ from 1. The resulting architecture is called [WGAN-GP](https://arxiv.org/abs/1704.00028), the GP standing for *Gradient-Penalty*.
 * [Spectral normalisation](https://arxiv.org/abs/1802.05957). This idea is more theoretically sound than the methods above. Each weight matrix of the discriminator is normalised in proportion to its largest eigenvalue. Doing so limits the 'stretchiness' of each matrix and ensures they are 1-Lipschitz.
-
-With any luck, you should now have enough knowledge of the Wasserstein distance to cringe everytime you read a GAN paper where an outdated loss function is used!

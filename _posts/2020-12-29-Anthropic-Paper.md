@@ -6,7 +6,7 @@ permalink: /anthropic_paper/
 mathjax: true
 ---
 
-(The original version of this post on LessWrong is here: https://www.lesswrong.com/posts/oBpebs5j5ngs3EXr5/a-summary-of-anthropic-s-first-paper-3)
+**The original version of this post on LessWrong is here: https://bit.ly/3mEYpkb**
 
 *"Larger models tend to perform better at most tasks, and there is no reason to expect naive alignment-related tasks to be an exception."*
 
@@ -62,9 +62,11 @@ I think there are two positive scaling results in the above. This first is that 
 
 The orange line shows the performance using "context distillation", a new technique introduced in the paper. The idea behind context distillation is that you can train a new LM to replicate the behavior of *another* LM that is using a prompt *C*. You can then throw away the prompt and just use your new LM to get the exact same behavior. (Being able to throw away the prompt has some practical benefits I won't go into.)
 
-More concretely, you try to minimize the KL between the probability distribution parameterized by your new LM, \\(p_\\theta(X)\\) and the distribution parameterized by the original LM in the presence of the prompt, \\(p_0(X|C)\\):
 
-                                                  \\(L(\\theta) = D_{KL}(p\_0(X|C)||p\_\\theta(X))\\)
+
+More concretely, you try to minimize the KL between the probability distribution parameterized by your new LM, $p_\theta(X)$ and the distribution parameterized by the original LM in the presence of the prompt, $p_0 (X|C)$:
+
+​                                                                                        $ L(\theta) = D_{KL}(p_0(X|C)||p_\theta(X)) $
 
 The results in the graph above show context distillation is about as effective as using the prompt. Whilst I don't think this is particularly game-changing, it's useful to know it can be done without a trade-off.
 
@@ -109,7 +111,7 @@ In this paper, a preference model (PM) is a transformer which takes a string of 
 
 To train their PMs, the authors begin with a dataset of pairs of "good" and "bad" sequences and a pre-trained language model. The model is then finetuned to minimize the following: 
 
-                                                       \\(L_{PM} = \\text{log}(1+ e^{r_{bad}-r_{good}})\\)
+​                                                                                           $L_{PM} = \text{log}(1+ e^{r_{bad}-r_{good}})$
 
 The resulting model can then easily be used to rank the quality of any number of text sequences. You use the model to find *r* for each sequence and then rank the *r*s in descending order.
 

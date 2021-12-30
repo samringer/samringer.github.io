@@ -4,7 +4,7 @@ title: Books
 permalink: /books/
 ---
 
-This is an incomplete list of what I've read in reverse chronological order. In a shamless rip-off of Patrick Collison, the books that I think where great are colored blue and those that were exceptional are colored green.  
+This is an incomplete list of what I've read in reverse chronological order. In a shamless rip-off of Patrick Collison, the books that I think were great are colored <span style='color:blue'>blue</span> and those that were exceptional are colored <span style='color:green'>green</span>.  
 
 **One Billion Americans** Matt Yglesias  
 **Neuromancer** William Gibson  
@@ -16,7 +16,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **The Anthropocene Reviewed** John Green  
 <span style='color:blue'>**Scout Mindset** Julia Galef</span>  
 **Eleven Rings** Phil Jackson  
-<span style='color:blue'>**Masters Of Doom** 120621</span>  
+<span style='color:blue'>**Masters Of Doom** David Kushner</span>  
 <span style='color:green'>**Liftoff** Eric Berger</span>  
 **Amazon Unbound** Brad Stone  
 **Jonny Magic And The Card Shark Kids** David Kushner  

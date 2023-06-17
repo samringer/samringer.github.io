@@ -4,3 +4,5 @@
 
 layout: home
 ---
+
+**If you are from Netflix and are visiting this site from neuralnetflix.com, I am willing to give you this domain for an appropriately sized donation to GiveWell.**

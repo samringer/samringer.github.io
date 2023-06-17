@@ -6,6 +6,19 @@ permalink: /books/
 
 This is an incomplete list of what I've read in reverse chronological order. In a shamless rip-off of Patrick Collison, the books that I think were great are colored <span style='color:blue'>blue</span> and those that were exceptional are colored <span style='color:green'>green</span>.  
 
+<span style='color:blue'>**More Money Than God** Sebastian Mallaby</span>  
+<span style='color:green'>**The Causal Angel** Hannu Rajaniemi</span>  
+**Red Team Blues** Cory Doctorow
+**The Fractal Prince** Hannu Rajaniemi
+<span style='color:blue'>**The Quantum Thief** Hannu Rajaniemi</span>  
+**Pyramids** Terry Pratchett
+<span style='color:blue'>**Year of Wonder** Clemency Burton-Hill</span>  
+<span style='color:blue'>**There Is No Antimemetics Division** qntm</span>
+<span style='color:blue'>**This Is How They Tell Me The World End** Nicle Perlroth</span>
+<span style='color:blue'>**Unsong**, Scott Alexander</span>
+**The Fifth Elephant** Terry Pratchett
+**Project Hail Mary** Andy Weir
+**The Phoenix Project** Gene Kim, Kevin Behr & George Spafford
 **One Billion Americans** Matt Yglesias  
 **Neuromancer** William Gibson  
 <span style='color:blue'>**Ender's Game** Orson Scott Card</span>  

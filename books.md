@@ -14,7 +14,7 @@ This is an incomplete list of what I've read in reverse chronological order. In 
 **Pyramids** Terry Pratchett  
 <span style='color:blue'>**Year of Wonder** Clemency Burton-Hill</span>  
 <span style='color:blue'>**There Is No Antimemetics Division** qntm</span>  
-<span style='color:blue'>**This Is How They Tell Me The World End** Nicle Perlroth</span>  
+<span style='color:blue'>**This Is How They Tell Me The World Ends** Nicle Perlroth</span>  
 <span style='color:blue'>**Unsong**, Scott Alexander</span>  
 **The Fifth Elephant** Terry Pratchett  
 **Project Hail Mary** Andy Weir  

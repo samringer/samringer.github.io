@@ -5,4 +5,4 @@
 layout: home
 ---
 
-**If you are from Netflix and are visiting from [www.neuralnetflix.com](www.neuralnetflix.com), I am willing to give you the domain for an appropriately sized donation to [GiveWell](https://www.givewell.org/).**
+**If you are from Netflix and are visiting via [www.neuralnetflix.com](www.neuralnetflix.com), I am willing to give you the domain for an appropriately sized donation to [GiveWell](https://www.givewell.org/).**

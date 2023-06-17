@@ -1,12 +1,12 @@
 ---
 layout: post
-title: "Models Don't \"Get Reward\"'
+title: "Models Dont Get Reward'
 date:   2022-12-30 20:00:00 +0200
 permalink: /models_reward/
 mathjax: true
 ---
 
-(In terms of content, this has a lot of overlap with [[Reward Is Not The Optimization Target]]. I'm basically rewriting a part of that post in language I personally find clearer.)
+(In terms of content, this has a lot of overlap with [Reward Is Not The Optimization Target](https://www.lesswrong.com/posts/pdaGN6pQyQarFHXF4/reward-is-not-the-optimization-target). I'm basically rewriting a part of that post in language I personally find clearer.)
 
 
 When thinking about deception and RLHF training, a simplified threat model is something like this:
